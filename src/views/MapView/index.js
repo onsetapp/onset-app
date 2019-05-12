@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default class SplashView extends React.Component {
+export default class MapView extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>SplashView</Text>
+        <Text>MapView</Text>
       </View>
     );
   }
