@@ -22,8 +22,6 @@ const getTabBarIcon = (navigation, tintColor) => {
   return <IconComponent name={iconName} size={25} color={tintColor} />;
 };
 
-/////////////////////////////////////////////////////////////////////////////
-
 const FilmsTab = createStackNavigator({
   Films: {
     path: '/films',
