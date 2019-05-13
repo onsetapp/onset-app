@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import {
   StyleSheet,
   FlatList,
@@ -46,11 +47,11 @@ const ITEM_WIDTH = (
 export default class MovieList extends PureComponent {
 
   static propTypes = {
-
+    items: PropTypes.arrayOf(PropTypes.string)
   }
 
   static defaultProps = {
-
+    items: [],
   }
 
   handlePress = () => {

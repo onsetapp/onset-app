@@ -1,0 +1,22 @@
+[
+    {
+        "images": [
+            "http://placehold.it/500x500"
+        ],
+        "createdDate": "2019-05-13T15:34:51.958Z",
+        "geoJSON": {
+            "type": "Point",
+            "geometry": [
+                120.23,
+                23.2
+            ],
+            "properties": {
+                "filmIds": [
+                    "1234"
+                ]
+            }
+        },
+        "id": "e56a399e-e19b-4124-91ba-38c4b00d1b22",
+        "name": "Nancy's House"
+    }
+]
