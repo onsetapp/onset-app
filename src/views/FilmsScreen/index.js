@@ -1,31 +1,60 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, View, ScrollView, TextInput } from 'react-native';
+
 import Header from '../../components/Header';
+import MovieList from '../../components/MovieList';
+
+import film from './film.json'
 
 export default class FilmsScreen extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = { query: '' };
-  }
+  state = { text: '' };
 
-  handleQueryChange = text => {
-    this.setState({ query: text });
+  handleTextChange = text => {
+    this.setState({ text });
   }
 
   render() {
     return (
-      <View style={styles.container}>
-        <Header>Films</Header>
-        <TextInput onChangeText={ this.handleQueryChange } value={ this.state.query } />
-      </View>
+      <ScrollView style={styles.container}>
+        <View style={ styles.head }>
+          <Header>Films</Header>
+          <TextInput
+            style={ styles.textInput }
+            onChangeText={ this.handleTextChange }
+            placeholder="Search"
+            value={ this.state.text } />
+        </View>
+        <View style={ styles.body }>
+          <MovieList films={ [film] } />
+        </View>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#8f8e90',
+    flex:1,
+    backgroundColor:'#8f8e90',
+  },
+  head: {
+    justifyContent: 'space-around',
+    padding: 10,
+  },
+  body: {
+    flex:1,
+    alignItems:'center',
+    justifyContent:'center',
+    alignSelf:'stretch',
+  },
+  textInput: {
+    color: '#fff',
+    fontSize: 25,
+    fontFamily: 'movie-title-ah',
+    marginRight: 50,
+    marginLeft: 50,
+    borderBottomWidth: 1,
+    borderBottomColor: '#fff',
   },
 });
