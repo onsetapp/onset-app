@@ -4,8 +4,6 @@ import { StyleSheet, View, ScrollView, TextInput } from 'react-native';
 import Header from '../../components/Header';
 import MovieList from '../../components/MovieList';
 
-import film from './film.json'
-
 export default class FilmsScreen extends React.Component {
 
   state = { text: '' };
@@ -26,7 +24,7 @@ export default class FilmsScreen extends React.Component {
             value={ this.state.text } />
         </View>
         <View style={ styles.body }>
-          <MovieList films={ [film] } />
+          <MovieList />
         </View>
       </ScrollView>
     );
