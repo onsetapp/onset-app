@@ -24,6 +24,7 @@ export default class MovieList extends Component {
           { key: 'i' },
           { key: 'j' },
         ]}
+        numColumns={ 4 }
         renderItem={this.renderItem}
       />
     );
@@ -34,6 +35,5 @@ const styles = StyleSheet.create({
   list: {
     justifyContent: 'center',
     flexDirection: 'row',
-    flexWrap: 'wrap',
   },
 });

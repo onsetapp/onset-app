@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Font } from 'expo';
 
-import MainView from './src/views/MainView';
+import Navigation from './src/navigation';
 import StatusBarPadding from './src/components/StatusBarPadding';
 
 export default class App extends PureComponent {
@@ -21,7 +21,7 @@ export default class App extends PureComponent {
     if (!this.state.fontLoaded) return null;
     return (
       <StatusBarPadding>
-        <MainView />
+        <Navigation />
       </StatusBarPadding>
     );
   }
