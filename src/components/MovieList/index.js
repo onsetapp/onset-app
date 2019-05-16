@@ -58,12 +58,13 @@ export default class MovieList extends PureComponent {
     console.log('clicked');
   }
 
-  renderItem({ item, index }) {
+  renderItem({ item }) {
+    const { posterUrl } = item;
     return (
       <View>
         <TouchableOpacity onPress={ this.handlePress }>
           <Image
-            source={{ uri: 'http://placehold.it/300x909' }}
+            source={{ uri: posterUrl }}
             style={ styles.movieCard } />
         </TouchableOpacity>
       </View>
@@ -71,13 +72,15 @@ export default class MovieList extends PureComponent {
   }
 
   render() {
+    const { items } = this.props;
     return (
       <View style={ styles.container }>
         <FlatList
           contentContainerStyle={ styles.list }
           numColumns={ NUM_COLUMNS }
           renderItem={ this.renderItem }
-          data={ data }
+          data={ items }
+          keyExtractor={ ({ id }) => id }
         />
       </View>
     );

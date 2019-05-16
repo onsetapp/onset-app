@@ -1,8 +1,18 @@
 import React from 'react';
-import { StyleSheet, View, ScrollView, TextInput } from 'react-native';
+import { StyleSheet, View, ScrollView, TextInput, ActivityIndicator, Text } from 'react-native';
+import { gql } from 'apollo-boost';
 
 import Header from '../../components/Header';
 import MovieList from '../../components/MovieList';
+
+const listFilmsQuery = gql`
+{
+  films {
+    id
+    posterUrl
+  }
+}
+`
 
 export default class FilmsScreen extends React.Component {
 
@@ -24,6 +34,13 @@ export default class FilmsScreen extends React.Component {
             value={ this.state.text } />
         </View>
         <View style={ styles.body }>
+          <Query query={ listFilmsQuery }>
+            {({ loading, error, data }) => {
+              if (loading) return <ActivityIndicator size='small' color='#fff' />;
+              if (error) return <Text>Error :(</Text>;
+              return <MovieList items={ data.films } />
+            }}
+          </Query>
           <MovieList />
         </View>
       </ScrollView>
