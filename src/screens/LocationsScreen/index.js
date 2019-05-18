@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView, TextInput, ActivityIndicator, Text } from 'react-native';
 import { gql } from 'apollo-boost';
+import { Query } from 'react-apollo';
 
 import Header from '../../components/Header';
 import MovieList from '../../components/MovieList';
