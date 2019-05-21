@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons'; // 6.2.2
 import FilmsScreen from '../screens/FilmsScreen';
 import MapScreen from '../screens/MapScreen';
 import LocationsScreen from '../screens/LocationsScreen';
+import LoginScreen from '../screens/LoginScreen';
 
 const getTabBarIcon = (navigation, tintColor) => {
   const { routeName } = navigation.state;
@@ -65,4 +66,18 @@ const TabNavigator = createBottomTabNavigator({
   initialRouteName: 'MapTab',
 });
 
-export default createAppContainer(TabNavigator);
+const AuthStack = createStackNavigator({
+  Login: {
+    path: '/login',
+    screen: LoginScreen
+  },
+  Main: TabNavigator
+},
+{
+  headerMode: 'none',
+  navigationOptions: {
+    headerVisible: false,
+  }
+})
+
+export default createAppContainer(AuthStack);
