@@ -1,6 +1,9 @@
 import React from 'react';
+import { View, StyleSheet } from 'react-native';
 import { MapView, PROVIDER_GOOGLE } from 'expo';
 import mapStyle from './map_style.json';
+
+import markerIcon from './marker.png'
 
 export const getCurrentLocation = () => {
   return new Promise((resolve, reject) => {
@@ -28,6 +31,7 @@ const markers = [
 export default class MapScreen extends React.Component {
   state = {
     region: defaultRegion,
+    peekView: false,
   }
 
   componentDidMount() {
@@ -49,28 +53,42 @@ export default class MapScreen extends React.Component {
     console.log('pressed')
   }
 
-
-  handlePress = () => {
-    console.log('selected')
-  }
-
   render() {
     return (
-      <MapView
-        style={{ flex: 1 }}
-        showsUserLocation={ true }
-        provider={ PROVIDER_GOOGLE }
-        customMapStyle={mapStyle}
-        initialRegion={ this.state.region }>
+      <View style={ styles.container }>
 
-          <MapView.Marker
-            coordinate={ this.state.region }
-            title='Some Title'
-            description='Some Description'
-            onSelect={ this.handleSelect }
-            onPress={ this.handlePress } />
+        <MapView
+          style={{ flex: 1 }}
+          showsUserLocation={ true }
+          provider={ PROVIDER_GOOGLE }
+          customMapStyle={mapStyle}
+          initialRegion={ this.state.region }>
 
-      </MapView>
+            <MapView.Marker
+              coordinate={ this.state.region }
+              title='Joe and Ds apartment'
+              description='Noxs Domain'
+              image={ markerIcon }
+              onPress={ this.handlePress } />
+
+        </MapView>
+
+
+        <View style={ styles.peekView }>
+
+        </View>
+      </View>
     );
   }
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    flex:1,
+  },
+  peakView: {
+    flex:1,
+    backgroundColor:'#8f8e90',
+  }
+});

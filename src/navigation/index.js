@@ -62,7 +62,7 @@ const TabNavigator = createBottomTabNavigator({
     activeTintColor: '#c7aa3c',
     inactiveTintColor: 'gray',
   },
-  initialRouteName: 'FilmsTab',
+  initialRouteName: 'MapTab',
 });
 
 export default createAppContainer(TabNavigator);
