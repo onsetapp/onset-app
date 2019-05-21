@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { MapView, PROVIDER_GOOGLE } from 'expo';
+import { MapView, PROVIDER_GOOGLE, Location, Permissions } from 'expo';
 import mapStyle from './map_style.json';
 
 import markerIcon from './marker.png'
@@ -19,34 +19,60 @@ const defaultRegion = {
   longitudeDelta: 0.0421,
 }
 
-const markers = [
-  {
-    latitude: 45.5190479,
-    longitude: -122.6720131,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
-  }
-]
+const marker = {
+  latitude: 45.522415,
+  longitude: -122.6523076,
+  latitudeDelta: 0.0922,
+  longitudeDelta: 0.0421,
+}
+
 
 export default class MapScreen extends React.Component {
   state = {
     region: defaultRegion,
-    peekView: false,
+    locationResult: null,
+    location: {
+      coords: {
+        latitude: 45.5190479,
+        longitude: -122.6720131
+      }
+    },
   }
 
   componentDidMount() {
-    return getCurrentLocation().then(position => {
-      if (position) {
-        this.setState({
-          region: {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-            latitudeDelta: 0.003,
-            longitudeDelta: 0.003,
-          },
-        });
+    this.getLocationAsync();
+  }
+
+  handleRegionChange = async region => {
+    console.log(region);
+    this.setState({ region });
+  };
+
+  getLocationAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      this.setState({
+        locationResult: 'Permission to access location was denied',
+        location,
+      });
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    console.log({      region: {
+      latitude: location.coords.latitude,
+      longitude: location.coords.longitude,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421, 
+    }})
+    this.setState({
+      region: {
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421, 
       }
     });
+    // this.setState({ locationResult: JSON.stringify(location), location, region: });
   }
 
   handlePress = () => {
@@ -62,10 +88,11 @@ export default class MapScreen extends React.Component {
           showsUserLocation={ true }
           provider={ PROVIDER_GOOGLE }
           customMapStyle={mapStyle}
-          initialRegion={ this.state.region }>
+          onRegionChangeComplete={ this.handleRegionChange }
+          region={ this.state.region }>
 
             <MapView.Marker
-              coordinate={ this.state.region }
+              coordinate={ marker }
               title='Joe and Ds apartment'
               description='Noxs Domain'
               image={ markerIcon }
@@ -73,10 +100,6 @@ export default class MapScreen extends React.Component {
 
         </MapView>
 
-
-        <View style={ styles.peekView }>
-
-        </View>
       </View>
     );
   }
@@ -87,8 +110,4 @@ const styles = StyleSheet.create({
   container: {
     flex:1,
   },
-  peakView: {
-    flex:1,
-    backgroundColor:'#8f8e90',
-  }
 });
