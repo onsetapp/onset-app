@@ -26,7 +26,12 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.onset.onsetapp"
+      "package": "com.onset.onsetapp",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBuZgeoZ1XH4osSoKL3B9-i6xd7nPABtsg"
+        }
+      }
     }
   }
 }

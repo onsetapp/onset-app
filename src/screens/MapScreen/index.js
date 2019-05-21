@@ -1,5 +1,6 @@
 import React from 'react';
-import { MapView } from 'expo';
+import { MapView, PROVIDER_GOOGLE } from 'expo';
+import mapStyle from './map_style.json';
 
 export const getCurrentLocation = () => {
   return new Promise((resolve, reject) => {
@@ -14,6 +15,15 @@ const defaultRegion = {
   latitudeDelta: 0.0922,
   longitudeDelta: 0.0421,
 }
+
+const markers = [
+  {
+    latitude: 45.5190479,
+    longitude: -122.6720131,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  }
+]
 
 export default class MapScreen extends React.Component {
   state = {
@@ -35,13 +45,32 @@ export default class MapScreen extends React.Component {
     });
   }
 
+  handlePress = () => {
+    console.log('pressed')
+  }
+
+
+  handlePress = () => {
+    console.log('selected')
+  }
+
   render() {
     return (
       <MapView
         style={{ flex: 1 }}
         showsUserLocation={ true }
-        initialRegion={ this.state.region }
-      />
+        provider={ PROVIDER_GOOGLE }
+        customMapStyle={mapStyle}
+        initialRegion={ this.state.region }>
+
+          <MapView.Marker
+            coordinate={ this.state.region }
+            title='Some Title'
+            description='Some Description'
+            onSelect={ this.handleSelect }
+            onPress={ this.handlePress } />
+
+      </MapView>
     );
   }
 }
