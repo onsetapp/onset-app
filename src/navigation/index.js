@@ -63,14 +63,14 @@ const TabNavigator = createBottomTabNavigator({
     activeTintColor: '#c7aa3c',
     inactiveTintColor: 'gray',
   },
-  initialRouteName: 'MapTab',
+  initialRouteName: 'FilmsTab',
 });
 
 const AuthStack = createStackNavigator({
-  Login: {
-    path: '/login',
-    screen: LoginScreen
-  },
+  // Login: {
+  //   path: '/login',
+  //   screen: LoginScreen
+  // },
   Main: TabNavigator
 },
 {

@@ -47,7 +47,7 @@ const ITEM_WIDTH = (
 export default class MovieList extends PureComponent {
 
   static propTypes = {
-    items: PropTypes.arrayOf(PropTypes.string)
+    items: PropTypes.arrayOf(PropTypes.object)
   }
 
   static defaultProps = {
@@ -97,6 +97,6 @@ const styles = StyleSheet.create({
   movieCard: {
     margin: ITEM_MARGIN,
     width: ITEM_WIDTH,
-    height: 125, 
+    height: 200, 
   },
 });

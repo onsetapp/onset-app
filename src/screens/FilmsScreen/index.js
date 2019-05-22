@@ -8,8 +8,9 @@ import MovieList from '../../components/MovieList';
 
 const listFilmsQuery = gql`
 {
-  filmLocations {
+  films {
     id
+    posterUrl
   }
 }
 `
@@ -37,8 +38,8 @@ export default class FilmsScreen extends React.Component {
           <Query query={ listFilmsQuery }>
             {({ loading, error, data }) => {
               if (loading) return <ActivityIndicator size='small' color='#fff' />;
-              if (error) return <Text>Error :(</Text>;
-              return <MovieList items={ data.filmLocations } />
+              if (error) return <Text>Error :( </Text>;
+              return <MovieList items={ data.films } />
             }}
           </Query>
         </View>
