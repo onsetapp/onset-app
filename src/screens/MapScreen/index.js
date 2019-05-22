@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { MapView, PROVIDER_GOOGLE, Location, Permissions } from 'expo';
+import { Ionicons } from '@expo/vector-icons'; // 6.2.2
+
 import mapStyle from './map_style.json';
 
 import markerIcon from './marker.png'
@@ -69,12 +71,10 @@ export default class MapScreen extends React.Component {
   }
 
   handleMarkerPress = () => {
-    console.log('marker pressed')
     this.setState({ showPreview: true });
   }
 
-  handleMarkerDeselect = () => {
-    console.log('deselect')
+  handleClosePreview = () => {
     this.setState({ showPreview: false });
   }
 
@@ -88,6 +88,7 @@ export default class MapScreen extends React.Component {
       <View style={ styles.container }>
 
         <MapView
+          provider="google"
           style={ styles.mapView }
           showsUserLocation={ true }
           provider={ PROVIDER_GOOGLE }
@@ -99,17 +100,23 @@ export default class MapScreen extends React.Component {
               coordinate={ marker }
               title='Joe and Ds apartment'
               description='Noxs Domain'
-              image={ markerIcon }
-              onDeselect={ this.handleMarkerDeselect }
-              onSelect={ this.handleMarkerPress }
               onPress={ this.handleMarkerPress }
+              image={ markerIcon }
             />
 
         </MapView>
 
         { showPreview && (
           <View style={ styles.locationDetailView }>
-            <TouchableOpacity onPress={ this.handlePreviewPress } style={ styles.previewImgWrapper }>
+            <TouchableOpacity
+              onPress={ this.handlePreviewPress }
+              style={ styles.previewImgWrapper }>
+              <Ionicons
+                name='ios-close'
+                size={ 25 }
+                color='white'
+                onPress={ this.handleClosePreview }
+                style={ styles.closeBtn } />
               <Image
                 resizeMode="cover"
                 // source={{ uri: 'http://placehold.it/500x500' }}
@@ -147,5 +154,12 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  
+  closeBtn: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    width: 25,
+    height: 25,
+    zIndex: 100,
+  },
 });
