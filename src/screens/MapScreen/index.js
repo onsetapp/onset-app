@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { MapView, PROVIDER_GOOGLE, Location, Permissions } from 'expo';
 import mapStyle from './map_style.json';
 
@@ -37,6 +37,7 @@ export default class MapScreen extends React.Component {
         longitude: -122.6720131
       }
     },
+    showPreview: false,
   }
 
   componentDidMount() {
@@ -44,7 +45,6 @@ export default class MapScreen extends React.Component {
   }
 
   handleRegionChange = async region => {
-    console.log(region);
     this.setState({ region });
   };
 
@@ -56,14 +56,7 @@ export default class MapScreen extends React.Component {
         location,
       });
     }
-
     let location = await Location.getCurrentPositionAsync({});
-    console.log({      region: {
-      latitude: location.coords.latitude,
-      longitude: location.coords.longitude,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421, 
-    }})
     this.setState({
       region: {
         latitude: location.coords.latitude,
@@ -75,16 +68,27 @@ export default class MapScreen extends React.Component {
     // this.setState({ locationResult: JSON.stringify(location), location, region: });
   }
 
-  handlePress = () => {
-    console.log('pressed')
+  handleMarkerPress = () => {
+    console.log('marker pressed')
+    this.setState({ showPreview: true });
+  }
+
+  handleMarkerDeselect = () => {
+    console.log('deselect')
+    this.setState({ showPreview: false });
+  }
+
+  handlePreviewPress = () => {
+    console.log('preview pressed')
   }
 
   render() {
+    const { showPreview } = this.state;
     return (
       <View style={ styles.container }>
 
         <MapView
-          style={{ flex: 1 }}
+          style={ styles.mapView }
           showsUserLocation={ true }
           provider={ PROVIDER_GOOGLE }
           customMapStyle={mapStyle}
@@ -96,9 +100,24 @@ export default class MapScreen extends React.Component {
               title='Joe and Ds apartment'
               description='Noxs Domain'
               image={ markerIcon }
-              onPress={ this.handlePress } />
+              onDeselect={ this.handleMarkerDeselect }
+              onSelect={ this.handleMarkerPress }
+              onPress={ this.handleMarkerPress }
+            />
 
         </MapView>
+
+        { showPreview && (
+          <View style={ styles.locationDetailView }>
+            <TouchableOpacity onPress={ this.handlePreviewPress } style={ styles.previewImgWrapper }>
+              <Image
+                resizeMode="cover"
+                // source={{ uri: 'http://placehold.it/500x500' }}
+                source={ require('./nox.png') }
+                style={ styles.previewImage } />
+            </TouchableOpacity>
+          </View>
+         ) }
 
       </View>
     );
@@ -110,4 +129,23 @@ const styles = StyleSheet.create({
   container: {
     flex:1,
   },
+  mapView: {
+    flex: 2,
+  },
+  locationDetailView: {
+    flex: 1,
+  },
+  previewImgWrapper: {
+    flex: 1,
+  },
+  previewImage: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+  },
+  
 });
