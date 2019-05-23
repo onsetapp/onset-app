@@ -28,7 +28,7 @@ export default class LoginScreen extends React.Component {
       this.props.navigation.navigate('Main');
       Alert.alert('Success!');
     } catch{
-      Alert.alert('Wrong Password Fucker!');
+      Alert.alert('Wrong Password!');
     }
   }
 
