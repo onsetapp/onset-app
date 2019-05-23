@@ -9,40 +9,14 @@ import {
   Dimensions,
 } from 'react-native';
 
-const data = [
-  { key: 'a' },
-  { key: 'b' },
-  { key: 'c' },
-  { key: 'd' },
-  { key: 'e' },
-  { key: 'f' },
-  { key: 'g' },
-  { key: 'h' },
-  { key: 'i' },
-  { key: 'j' },
-  { key: 'k' },
-  { key: 'l' },
-  { key: 'm' },
-  { key: 'n' },
-  { key: 'o' },
-  { key: 'p' },
-  { key: 'q' },
-  { key: 'r' },
-  { key: 's' },
-  { key: 't' },
-  { key: 'u' },
-  { key: 'v' },
-];
-
-const NUM_COLUMNS = 3;
-const CONTAINER_MARGIN = 5;
-const ITEM_MARGIN = 5;
+const NUM_COLUMNS = 4;
+const MARGIN = 5;
 const ITEM_WIDTH = (
   (Dimensions.get('window').width
-  - (CONTAINER_MARGIN * 2)
-  - (ITEM_MARGIN * NUM_COLUMNS))
+    - (MARGIN * (NUM_COLUMNS + 1)))
   / NUM_COLUMNS
 );
+const ITEM_HEIGHT = ITEM_WIDTH * 1.53;
 
 export default class MovieList extends PureComponent {
 
@@ -64,6 +38,7 @@ export default class MovieList extends PureComponent {
       <View>
         <TouchableOpacity onPress={ this.handlePress }>
           <Image
+            resizeMode='contain'
             source={{ uri: posterUrl }}
             style={ styles.movieCard } />
         </TouchableOpacity>
@@ -89,14 +64,14 @@ export default class MovieList extends PureComponent {
 
 const styles = StyleSheet.create({
   container: {
-    margin: CONTAINER_MARGIN,
+    margin: MARGIN,
   },
   list: {
     justifyContent: 'center',
   },
   movieCard: {
-    margin: ITEM_MARGIN,
+    margin: MARGIN,
     width: ITEM_WIDTH,
-    height: 200, 
+    height: ITEM_HEIGHT,
   },
 });

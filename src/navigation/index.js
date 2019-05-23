@@ -11,11 +11,11 @@ const getTabBarIcon = (navigation, tintColor) => {
   const { routeName } = navigation.state;
   let IconComponent = Ionicons;
   let iconName;
-  if (routeName === 'FilmsTab') {
+  if (routeName === 'Films') {
     iconName = 'ios-film';
-  } else if (routeName === 'MapTab') {
+  } else if (routeName === 'Map') {
     iconName = 'ios-map';
-  } else if (routeName === 'LocationsTab') {
+  } else if (routeName === 'Locations') {
     iconName = 'ios-pin';
   }
 
@@ -50,9 +50,9 @@ const LocationsTab = createStackNavigator({
 })
 
 const TabNavigator = createBottomTabNavigator({
-  FilmsTab: FilmsTab,
-  MapTab: MapScreen,
-  LocationsTab: LocationsTab,
+  Films: FilmsTab,
+  Map: MapScreen,
+  Locations: LocationsTab,
 },
 {
   defaultNavigationOptions: ({ navigation }) => ({
@@ -63,14 +63,14 @@ const TabNavigator = createBottomTabNavigator({
     activeTintColor: '#c7aa3c',
     inactiveTintColor: 'gray',
   },
-  initialRouteName: 'FilmsTab',
+  initialRouteName: 'Films',
 });
 
 const AuthStack = createStackNavigator({
-  // Login: {
-  //   path: '/login',
-  //   screen: LoginScreen
-  // },
+  Login: {
+    path: '/login',
+    screen: LoginScreen
+  },
   Main: TabNavigator
 },
 {
