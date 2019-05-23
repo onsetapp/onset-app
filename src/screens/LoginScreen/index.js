@@ -1,22 +1,30 @@
 import React from 'react';
 import { Alert, Button, TextInput, View, StyleSheet } from 'react-native';
+import { Auth } from 'aws-amplify';
+
+Auth.configure({
+
+});
 
 import Header from '../../components/Header';
 
 export default class LoginScreen extends React.Component {
 
   state = {
-    username: '',
-    password: ''
+    username: 'jcuffney',
+    password: 'Yggrasil8',
   };
 
   handleTextChange = text => {
     this.setState({ text });
   }
 
-  onLogin() {
-    const { username, password } = this.state;
-    // Alert.alert('Credentials', `${username} + ${password}`);
+  handleLogin = async () => {
+    const { username, password  } = this.state
+    console.log('about to sign in');
+    await Auth.signIn(username, password);
+    console.log('sign in successful!')
+    Alert.alert('Success!');
     this.props.navigation.navigate('Main');
   }
 
@@ -41,7 +49,7 @@ export default class LoginScreen extends React.Component {
         <Button
           title={'Login'}
           style={styles.input}
-          onPress={this.onLogin.bind(this)}
+          onPress={this.handleLogin }
         />
       </View>
     );
