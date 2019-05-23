@@ -22,10 +22,14 @@ export default class LoginScreen extends React.Component {
   handleLogin = async () => {
     const { username, password  } = this.state
     console.log('about to sign in');
-    await Auth.signIn(username, password);
-    console.log('sign in successful!')
-    Alert.alert('Success!');
-    this.props.navigation.navigate('Main');
+    try {
+      await Auth.signIn(username, password);
+      console.log('sign in successful!')
+      this.props.navigation.navigate('Main');
+      Alert.alert('Success!');
+    } catch{
+      Alert.alert('Wrong Password Fucker!');
+    }
   }
 
   render() {
