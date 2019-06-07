@@ -53,15 +53,6 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
       - run: npm run test
 
-  expo_publish: 
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-      - run: echo "expo publish"
-
 workflows:
   version: 2
   publish:
