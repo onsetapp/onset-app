@@ -51,7 +51,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
-      - run: npx expo login --non-interactive -u 
+      - run: npx expo login --non-interactive -u jcuffney 
       - run: npx expo optimize
       - run: npx expo publish --non-interactive
     
