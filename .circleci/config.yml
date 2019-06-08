@@ -51,11 +51,10 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
-      - run: npx expo login --non-interactive -u 
+      - run: npx expo login --non-interactive -u jcuffney
       - run: npx expo optimize --non-interactive
       - run: npx expo publish --non-interactive --config app.dev.json
       - run: npx expo logout --non-interactive
-
 
   publish_expo_prod: 
     <<: *defaults
@@ -64,7 +63,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
-      - run: npx expo login --non-interactive -u 
+      - run: npx expo login --non-interactive -u jcuffney
       - run: npx expo optimize --non-interactive
       - run: npx expo publish --non-interactive --config app.prod.json
       - run: npx expo logout --non-interactive
@@ -76,8 +75,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
-      - run: echo "publish google play"  
-      - run: npx expo login --non-interactive -u
+      - run: npx expo login --non-interactive -u jcuffney
       - run: npx expo optimize --non-interactive
       - run: npx expo build:ios --non-interactive --config app.prod.json
       - run: npx expo logout --non-interactive
@@ -89,8 +87,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
-      - run: echo "publish ios app store"  
-      - run: npx expo login --non-interactive -u 
+      - run: npx expo login --non-interactive -u jcuffney
       - run: npx expo optimize --non-interactive
       - run: npx expo build:ios --non-interactive --config app.prod.json
       - run: npx expo logout --non-interactive
@@ -126,6 +123,7 @@ workflows:
               only: master
       - publish_google_play:
           requires:
+            - dependencies
             - lint
             - tests
           filters:
@@ -133,6 +131,7 @@ workflows:
               only: master
       - publish_ios_app_store:
           requires:
+            - dependencies
             - lint
             - tests
           filters:
