@@ -1,8 +1,8 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "lint": "NODE_PATH=src eslint src/**/*.js",
-    "lint:fix": "NODE_PATH=src eslint --fix src/**/*.js",
+    "lint": "eslint 'src/**/*.js'",
+    "lint:fix": "eslint --fix 'src/**/*.js'",
     "test": "echo \"no tests yet\"",
     "start": "expo start",
     "android": "expo start --android",
@@ -20,13 +20,13 @@
     "aws-appsync-react": "^1.2.8",
     "expo": "^32.0.0",
     "graphql": "^14.3.1",
-    "react": "16.5.0",
+    "react": "^16.8.6",
     "react-apollo": "^2.5.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-navigation": "^3.9.1"
   },
   "devDependencies": {
-    "@cuffney/eslint-config": "^1.0.5",
+    "@cuffney/eslint-config": "^1.0.6",
     "babel-eslint": "^10.0.1",
     "babel-preset-expo": "^5.0.0",
     "eslint": "^5.16.0",
