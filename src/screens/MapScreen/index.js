@@ -53,8 +53,7 @@ export default class MapScreen extends React.Component {
     let { status } = await Permissions.askAsync(Permissions.LOCATION)
     if (status !== 'granted') {
       this.setState({
-        locationResult: 'Permission to access location was denied',
-        location
+        locationResult: 'Permission to access location was denied'
       })
     }
     let location = await Location.getCurrentPositionAsync({})
@@ -87,7 +86,6 @@ export default class MapScreen extends React.Component {
       <View style={styles.container}>
 
         <MapView
-          provider='google'
           style={styles.mapView}
           showsUserLocation
           provider={PROVIDER_GOOGLE}

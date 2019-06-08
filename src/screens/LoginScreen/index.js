@@ -1,6 +1,7 @@
 import React from 'react'
 import { Alert, Button, TextInput, View, StyleSheet } from 'react-native'
 import { Auth } from 'aws-amplify'
+import PropTypes from 'prop-types'
 
 import Header from '../../components/Header'
 
@@ -9,6 +10,14 @@ Auth.configure({
 })
 
 export default class LoginScreen extends React.Component {
+  static propTypes = {
+    navigation: PropTypes.shape({
+      navigate: PropTypes.func
+    })
+  }
+
+  static defaultProps = {}
+
   state = {
     username: 'jcuffney',
     password: 'Yggrasil8'
