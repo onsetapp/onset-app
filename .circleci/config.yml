@@ -44,17 +44,31 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
       - run: npm run test
 
-  publish_expo: 
+  publish_expo_dev: 
     <<: *defaults
     steps:
       - checkout
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
-      - run: npx expo login --non-interactive -u jcuffney 
-      - run: npx expo optimize
-      - run: npx expo publish --non-interactive
-    
+      - run: npx expo login --non-interactive -u 
+      - run: npx expo optimize --non-interactive
+      - run: npx expo publish --non-interactive --config app.dev.json
+      - run: npx expo logout --non-interactive
+
+
+  publish_expo_prod: 
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+      - run: npx expo login --non-interactive -u 
+      - run: npx expo optimize --non-interactive
+      - run: npx expo publish --non-interactive --config app.prod.json
+      - run: npx expo logout --non-interactive
+   
   publish_google_play: 
     <<: *defaults
     steps:
@@ -63,6 +77,10 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
       - run: echo "publish google play"  
+      - run: npx expo login --non-interactive -u
+      - run: npx expo optimize --non-interactive
+      - run: npx expo build:ios --non-interactive --config app.prod.json
+      - run: npx expo logout --non-interactive
 
   publish_ios_app_store: 
     <<: *defaults
@@ -72,6 +90,10 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
       - run: echo "publish ios app store"  
+      - run: npx expo login --non-interactive -u 
+      - run: npx expo optimize --non-interactive
+      - run: npx expo build:ios --non-interactive --config app.prod.json
+      - run: npx expo logout --non-interactive
 
 workflows:
   version: 2
@@ -84,15 +106,24 @@ workflows:
       - tests:
           requires:
             - dependencies
-      - publish_expo:
+      - publish_expo_dev:
           context: EXPO
           requires:
             - dependencies
-            # - lint
-            # - tests
+            - lint
+            - tests
           filters:
             branches:
               only: dev
+      - publish_expo_prod:
+          context: EXPO
+          requires:
+            - dependencies
+            - lint
+            - tests
+          filters:
+            branches:
+              only: master
       - publish_google_play:
           requires:
             - lint
