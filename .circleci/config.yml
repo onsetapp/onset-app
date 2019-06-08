@@ -51,7 +51,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
-      - run: npm run test
+      - run: echo "expo publish"
 
 workflows:
   version: 2
