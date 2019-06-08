@@ -52,7 +52,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
       - run: npx expo login --non-interactive -u jcuffney
-      - run: npx expo optimize --non-interactive
+      - run: npx expo optimize --non-interactive --config app.dev.json
       - run: npx expo publish --non-interactive --config app.dev.json
       - run: npx expo logout --non-interactive
 
@@ -64,7 +64,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
       - run: npx expo login --non-interactive -u jcuffney
-      - run: npx expo optimize --non-interactive
+      - run: npx expo optimize --non-interactive --config app.prod.json
       - run: npx expo publish --non-interactive --config app.prod.json
       - run: npx expo logout --non-interactive
    
@@ -76,7 +76,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
       - run: npx expo login --non-interactive -u jcuffney
-      - run: npx expo optimize --non-interactive
+      - run: npx expo optimize --non-interactive --config app.prod.json
       - run: npx expo build:ios --non-interactive --config app.prod.json
       - run: npx expo logout --non-interactive
 
@@ -88,7 +88,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
       - run: npx expo login --non-interactive -u jcuffney
-      - run: npx expo optimize --non-interactive
+      - run: npx expo optimize --non-interactive --config app.prod.json
       - run: npx expo build:ios --non-interactive --config app.prod.json
       - run: npx expo logout --non-interactive
 
