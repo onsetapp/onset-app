@@ -3,7 +3,7 @@
   "scripts": {
     "lint": "NODE_PATH=src eslint src/**/*.js",
     "lint:fix": "NODE_PATH=src eslint --fix src/**/*.js",
-    "test": "echo \"no tests yet\"",
+    "test": "jest",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -26,11 +26,20 @@
     "react-navigation": "^3.9.1"
   },
   "devDependencies": {
-    "@cuffney/eslint-config": "^1.0.5",
+    "@cuffney/eslint-config": "^1.0.6",
+    "@unimodules/react-native-adapter": "^2.0.1",
     "babel-eslint": "^10.0.1",
     "babel-preset-expo": "^5.0.0",
     "eslint": "^5.16.0",
-    "expo-cli": "^2.19.4"
+    "expo-cli": "^2.19.4",
+    "jest-expo": "^33.0.2",
+    "react-test-renderer": "^16.8.6"
   },
-  "private": true
+  "private": true,
+  "jest": {
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|react-clone-referenced-element|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|sentry-expo|native-base))"
+    ]
+  }
 }
