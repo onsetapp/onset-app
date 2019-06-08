@@ -53,6 +53,33 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
       - run: echo "expo publish"
 
+  publish_expo: 
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+      - run: echo "expo publish"
+    
+  publish_google_play: 
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+      - run: echo "publish google play"  
+
+  publish_ios_app_store: 
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+      - run: echo "publish ios app store"  
+
 workflows:
   version: 2
   publish:
@@ -64,7 +91,24 @@ workflows:
       - tests:
           requires:
             - dependencies
-      - expo_publish:
+      - publish_expo:
           requires:
             - lint
             - tests
+          filters:
+            branches:
+              only: dev
+      - publish_google_play:
+          requires:
+            - lint
+            - tests
+          filters:
+            branches:
+              only: master
+      - publish_ios_app_store:
+          requires:
+            - lint
+            - tests
+          filters:
+            branches:
+              only: master
