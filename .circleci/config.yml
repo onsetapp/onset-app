@@ -44,15 +44,6 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
       - run: npm run test
 
-  expo_publish: 
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-      - run: echo "expo publish"
-
   publish_expo: 
     <<: *defaults
     steps:
@@ -60,7 +51,10 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
-      - run: echo "expo publish"
+      - run: |
+        npx expo login --non-interactive -u 
+        npx expo optimize
+        npx expo publish --non-interactive
     
   publish_google_play: 
     <<: *defaults
@@ -92,6 +86,7 @@ workflows:
           requires:
             - dependencies
       - publish_expo:
+          context: EXPO
           requires:
             - lint
             - tests
