@@ -51,10 +51,9 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
-      - run: |
-          npx expo login --non-interactive -u 
-          npx expo optimize
-          npx expo publish --non-interactive
+      - run: npx expo login --non-interactive -u 
+      - run: npx expo optimize
+      - run: npx expo publish --non-interactive
     
   publish_google_play: 
     <<: *defaults
@@ -88,8 +87,9 @@ workflows:
       - publish_expo:
           context: EXPO
           requires:
-            - lint
-            - tests
+            - dependencies
+            # - lint
+            # - tests
           filters:
             branches:
               only: dev
