@@ -1,48 +1,48 @@
-import React, { PureComponent } from 'react';
-import { Font } from 'expo';
-import { ApolloProvider } from 'react-apollo';
-import { Rehydrated } from 'aws-appsync-react';
-import AWSAppSyncClient, { AUTH_TYPE } from 'aws-appsync';
-import aws_config from './aws-exports';
+import React, { PureComponent } from 'react'
+import { Font } from 'expo'
+import { ApolloProvider } from 'react-apollo'
+import { Rehydrated } from 'aws-appsync-react'
+import AWSAppSyncClient from 'aws-appsync'
+import awsConfig from './aws-exports'
 
-import Navigation from './src/navigation';
-import StatusBarPadding from './src/components/StatusBarPadding';
+import Navigation from './src/navigation'
+import StatusBarPadding from './src/components/StatusBarPadding'
 
-import './src/amplify';
+import './src/amplify'
 
 const client = new AWSAppSyncClient({
-  url: aws_config.aws_appsync_graphqlEndpoint,
-  region: aws_config.aws_appsync_region,
+  url: awsConfig.aws_appsync_graphqlEndpoint,
+  region: awsConfig.aws_appsync_region,
   auth: {
-    type: aws_config.aws_appsync_authenticationType,
-    apiKey: aws_config.aws_appsync_apiKey,
+    type: awsConfig.aws_appsync_authenticationType,
+    apiKey: awsConfig.aws_appsync_apiKey
   }
-});
+})
 
 export default class App extends PureComponent {
 x
   state = {
-    assetsLoaded: false,
+    assetsLoaded: false
   }
 
-  async componentDidMount() {
+  async componentDidMount () {
     await Font.loadAsync({
-      'movie-title-ah': require('./assets/fonts/movie-title_ah.ttf'),
-    });
-    this.setState({assetsLoaded: true});
+      'movie-title-ah': require('./assets/fonts/movie-title_ah.ttf')
+    })
+    this.setState({ assetsLoaded: true })
   }
 
-  render() {
-    if (!this.state.assetsLoaded) return null;
+  render () {
+    if (!this.state.assetsLoaded) return null
     return (
-      
+
       <StatusBarPadding>
-        <ApolloProvider client={ client }>
+        <ApolloProvider client={client}>
           <Rehydrated>
             <Navigation />
           </Rehydrated>
         </ApolloProvider>
       </StatusBarPadding>
-    );
+    )
   }
 }

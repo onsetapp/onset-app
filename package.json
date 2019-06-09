@@ -1,8 +1,8 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "lint": "eslint \"src/**/*.js\" \"tests/**/*.js\"",
-    "lint:fix": "eslint --fix \"src/**/*.js  tests/**/*.js\"",
+    "lint": "eslint 'src/**/*.js' 'tests/**/*.js' '*.js'",
+    "lint:fix": "eslint --fix 'src/**/*.js'  'tests/**/*.js' '*.js'",
     "test": "jest -o --watch --coverage=false",
     "test:ci": "jest",
     "update:snapshots": "jest -u --coverage=false",
