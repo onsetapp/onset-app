@@ -3,7 +3,9 @@
   "scripts": {
     "lint": "NODE_PATH=src eslint src/**/*.js",
     "lint:fix": "NODE_PATH=src eslint --fix src/**/*.js",
-    "test": "jest",
+    "test": "jest -o --watch --coverage=false",
+    "test:ci": "jest",
+    "update:snapshots": "jest -u --coverage=false",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -40,6 +42,14 @@
     "preset": "jest-expo",
     "transformIgnorePatterns": [
       "node_modules/(?!((jest-)?react-native|react-clone-referenced-element|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|sentry-expo|native-base))"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/coverage/**",
+      "!**/node_modules/**",
+      "!**/babel.config.js",
+      "!**/jest.setup.js"
     ]
   }
 }
