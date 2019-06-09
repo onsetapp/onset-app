@@ -134,12 +134,12 @@ workflows:
           filters:
             branches:
               only: master
-      - publish_ios_app_store:
-          context: EXPO
-          requires:
-            - dependencies
-            - lint
-            - tests
-          filters:
-            branches:
-              only: master
+      # - publish_ios_app_store:
+      #     context: EXPO
+      #     requires:
+      #       - dependencies
+      #       - lint
+      #       - tests
+      #     filters:
+      #       branches:
+      #         only: master
