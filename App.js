@@ -8,7 +8,7 @@ import awsConfig from './aws-exports'
 import Navigation from './src/navigation'
 import StatusBarPadding from './src/components/StatusBarPadding'
 
-import './src/amplify'
+import './src/lib/amplify'
 
 const client = new AWSAppSyncClient({
   url: awsConfig.aws_appsync_graphqlEndpoint,

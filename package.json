@@ -11,6 +11,7 @@
     "ios": "expo start --ios",
     "eject": "expo eject",
     "debug": "open rndebugger://set-debugger-loc?host=127.0.0.1&port=19001",
+    "cover:report": "open coverage/lcov-report/index.html",
     "init:hard": "rm -rf node_modules/ package-lock.json && npm i"
   },
   "dependencies": {
@@ -55,10 +56,10 @@
     ],
     "coverageThreshold": {
       "global": {
-        "statements": 5,
-        "branches": 5,
-        "lines": 5,
-        "functions": 5
+        "statements": 0,
+        "branches": 0,
+        "lines": 0,
+        "functions": 0
       }
     }
   }
