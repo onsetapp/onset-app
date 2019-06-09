@@ -93,7 +93,7 @@ jobs:
       - run: npx expo login --non-interactive -u jcuffney
       - run: cp app.prod.json app.json
       - run: npx expo optimize --non-interactive
-      - run: npx expo build:ios --non-interactive
+      - run: npx expo build:ios --non-interactive --apple-id josephcuffney@gmail.com
       - run: npx expo logout --non-interactive
 
 workflows:
