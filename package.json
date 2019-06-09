@@ -1,8 +1,8 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "lint": "eslint 'src/**/*.js'",
-    "lint:fix": "eslint --fix 'src/**/*.js'",
+    "lint": "eslint \"src/**/*.js\" \"tests/**/*.js\"",
+    "lint:fix": "eslint --fix \"src/**/*.js  tests/**/*.js\"",
     "test": "jest -o --watch --coverage=false",
     "test:ci": "jest",
     "update:snapshots": "jest -u --coverage=false",
@@ -35,7 +35,8 @@
     "eslint": "^5.16.0",
     "expo-cli": "^2.19.4",
     "jest-expo": "^33.0.2",
-    "react-test-renderer": "^16.8.6"
+    "react-test-renderer": "^16.8.6",
+    "schedule": "^0.4.0"
   },
   "private": true,
   "jest": {
