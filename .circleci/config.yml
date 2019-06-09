@@ -81,6 +81,8 @@ jobs:
       - run: cp app.prod.json app.json
       - run: npx expo optimize --non-interactive
       - run: npx expo build:android --non-interactive
+      # https://docs.expo.io/versions/v33.0.0/distribution/uploading-apps/
+      # - run: npx expo upload:android --path <path> 
       - run: npx expo logout --non-interactive
 
   publish_ios_app_store: 
@@ -94,6 +96,8 @@ jobs:
       - run: cp app.prod.json app.json
       - run: npx expo optimize --non-interactive
       - run: npx expo build:ios --non-interactive --apple-id josephcuffney@gmail.com
+      # https://docs.expo.io/versions/v33.0.0/distribution/uploading-apps/
+      # - run: npx expo upload:ios --path <path> 
       - run: npx expo logout --non-interactive
 
 workflows:
