@@ -20,7 +20,6 @@ const client = new AWSAppSyncClient({
 })
 
 export default class App extends PureComponent {
-x
   state = {
     assetsLoaded: false
   }
