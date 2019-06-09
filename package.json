@@ -3,7 +3,9 @@
   "scripts": {
     "lint": "eslint 'src/**/*.js'",
     "lint:fix": "eslint --fix 'src/**/*.js'",
-    "test": "echo \"no tests yet\"",
+    "test": "jest -o --watch --coverage=false",
+    "test:ci": "jest",
+    "update:snapshots": "jest -u --coverage=false",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -30,7 +32,23 @@
     "babel-eslint": "^10.0.1",
     "babel-preset-expo": "^5.0.0",
     "eslint": "^5.16.0",
-    "expo-cli": "^2.19.4"
+    "expo-cli": "^2.19.4",
+    "jest-expo": "^33.0.2",
+    "react-test-renderer": "^16.8.6"
   },
-  "private": true
+  "private": true,
+  "jest": {
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|react-clone-referenced-element|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|sentry-expo|native-base))"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/coverage/**",
+      "!**/node_modules/**",
+      "!**/babel.config.js",
+      "!**/jest.setup.js"
+    ]
+  }
 }
