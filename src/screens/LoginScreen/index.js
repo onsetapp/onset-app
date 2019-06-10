@@ -20,7 +20,7 @@ export default class LoginScreen extends React.Component {
 
   state = {
     username: 'jcuffney',
-    password: 'Yggrasil8'
+    password: ''
   };
 
   handleTextChange = text => {
@@ -28,11 +28,9 @@ export default class LoginScreen extends React.Component {
   }
 
   handleLogin = async () => {
-    const { username, password } = this.state
-    console.log('about to sign in')
+    // const { username, password } = this.state
     try {
-      await Auth.signIn(username, password)
-      console.log('sign in successful!')
+      // await Auth.signIn(username, password)
       this.props.navigation.navigate('Main')
       Alert.alert('Success!')
     } catch {

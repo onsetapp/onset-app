@@ -1,4 +1,3 @@
-.DS_Store
 node_modules/**/*
 .expo/*
 npm-debug.*
@@ -6,4 +5,7 @@ npm-debug.*
 *.p12
 *.key
 *.mobileprovision
-coverage
+*.orig.*
+web-build/
+web-report/
+.DS_Store

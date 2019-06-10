@@ -9,58 +9,35 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
+    "web": "expo start --web",
     "eject": "expo eject",
     "debug": "open rndebugger://set-debugger-loc?host=127.0.0.1&port=19001",
     "cover:report": "open coverage/lcov-report/index.html",
     "init:hard": "rm -rf node_modules/ package-lock.json && npm i"
   },
   "dependencies": {
-    "apollo-boost": "^0.3.1",
-    "apollo-cache-inmemory": "^1.6.2",
-    "apollo-client": "^2.6.2",
-    "apollo-link-http": "^1.5.14",
+    "apollo-boost": "^0.4.2",
     "aws-amplify": "^1.1.28",
     "aws-appsync": "^1.8.0",
     "aws-appsync-react": "^1.2.8",
-    "expo": "^32.0.0",
-    "graphql": "^14.3.1",
-    "react": "^16.8.6",
+    "expo": "^33.0.0",
+    "expo-location": "^5.0.1",
+    "expo-permissions": "^5.0.1",
+    "react": "16.8.3",
     "react-apollo": "^2.5.6",
+    "react-dom": "^16.8.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
-    "react-navigation": "^3.9.1"
+    "react-native-maps": "^0.24.2",
+    "react-native-web": "^0.11.4",
+    "react-navigation": "^3.11.0"
   },
   "devDependencies": {
     "@cuffney/eslint-config": "^1.0.6",
-    "@unimodules/react-native-adapter": "^2.0.1",
     "babel-eslint": "^10.0.1",
-    "babel-preset-expo": "^5.0.0",
+    "babel-preset-expo": "^5.1.1",
     "eslint": "^5.16.0",
-    "expo-cli": "^2.19.4",
     "jest-expo": "^33.0.2",
-    "react-test-renderer": "^16.8.6",
-    "schedule": "^0.4.0"
+    "react-test-renderer": "^16.8.6"
   },
-  "private": true,
-  "jest": {
-    "preset": "jest-expo",
-    "transformIgnorePatterns": [
-      "node_modules/(?!((jest-)?react-native|react-clone-referenced-element|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|sentry-expo|native-base))"
-    ],
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "**/*.{js,jsx}",
-      "!**/coverage/**",
-      "!**/node_modules/**",
-      "!**/babel.config.js",
-      "!**/jest.setup.js"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "statements": 0,
-        "branches": 0,
-        "lines": 0,
-        "functions": 0
-      }
-    }
-  }
+  "private": true
 }

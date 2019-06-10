@@ -3,10 +3,11 @@
     "name": "On Set (Dev)",
     "slug": "on-set-app-dev",
     "privacy": "public",
-    "sdkVersion": "32.0.0",
+    "sdkVersion": "33.0.0",
     "platforms": [
       "ios",
-      "android"
+      "android",
+      "web"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -27,7 +28,7 @@
       "bundleIdentifier": "com.getonsetapp.app"
     },
     "android": {
-      "package": "com.onset.onsetapp.dev",
+      "package": "com.onset.onsetapp",
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyBuZgeoZ1XH4osSoKL3B9-i6xd7nPABtsg"

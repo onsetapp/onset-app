@@ -1,6 +1,9 @@
 import React from 'react'
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native'
-import { MapView, PROVIDER_GOOGLE, Location, Permissions } from 'expo'
+import { PROVIDER_GOOGLE } from 'expo'
+import * as Location from 'expo-location'
+import * as Permissions from 'expo-permissions'
+import MapView from 'react-native-maps'
 import { Ionicons } from '@expo/vector-icons' // 6.2.2
 
 import mapStyle from './map_style.json'

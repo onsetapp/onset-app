@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Font } from 'expo'
+import * as Font from 'expo-font'
 import { ApolloProvider } from 'react-apollo'
 import { Rehydrated } from 'aws-appsync-react'
 import AWSAppSyncClient from 'aws-appsync'

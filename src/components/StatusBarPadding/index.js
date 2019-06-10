@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Platform } from 'react-native'
-import { Constants } from 'expo'
+import Constants from 'expo-constants'
 import PropTypes from 'prop-types'
 
 export default class StatusBarPadding extends Component {
