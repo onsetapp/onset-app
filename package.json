@@ -1,5 +1,6 @@
 {
   "main": "node_modules/expo/AppEntry.js",
+  "private": true,
   "scripts": {
     "lint": "eslint 'src/**/*.js' 'tests/**/*.js' '*.js'",
     "lint:fix": "eslint --fix 'src/**/*.js'  'tests/**/*.js' '*.js'",
@@ -35,10 +36,34 @@
     "@cuffney/eslint-config": "^1.0.6",
     "babel-eslint": "^10.0.1",
     "babel-preset-expo": "^5.1.1",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^5.16.0",
     "expo-cli": "^2.19.4",
     "jest-expo": "^33.0.2",
     "react-test-renderer": "^16.8.6"
   },
-  "private": true
+  "jest": {
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|react-clone-referenced-element|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|sentry-expo|native-base))"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/coverage/**",
+      "!**/node_modules/**",
+      "!**/babel.config.js",
+      "!**/jest.setup.js"
+    ],
+    "setupFilesAfterEnv": ["./src/setupTests.js"],
+    "coverageThreshold": {
+      "global": {
+        "statements": 10,
+        "branches": 0,
+        "lines": 10,
+        "functions": 5
+      }
+    }
+  }
 }

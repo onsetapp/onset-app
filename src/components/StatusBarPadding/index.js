@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Platform } from 'react-native'
+import { View, Platform, StyleSheet } from 'react-native'
 import Constants from 'expo-constants'
 import PropTypes from 'prop-types'
 
@@ -12,9 +12,16 @@ export default class StatusBarPadding extends Component {
 
   render () {
     return (
-      <View style={{ flex: 1, paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight }}>
+      <View style={ styles.statusBarHeight }>
         { this.props.children }
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  statusBarPadding: {
+    flex: 1,
+    paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight,
+  }
+})

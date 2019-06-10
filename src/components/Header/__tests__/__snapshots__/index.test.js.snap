@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> renders correctly 1`] = `
+<Text
+  style={
+    Object {
+      "color": "#fff",
+      "fontFamily": "movie-title-ah",
+      "fontSize": 80,
+      "textAlign": "center",
+    }
+  }
+/>
+`;
