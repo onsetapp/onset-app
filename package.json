@@ -20,7 +20,7 @@
     "aws-amplify": "^1.1.28",
     "aws-appsync": "^1.8.0",
     "aws-appsync-react": "^1.2.8",
-    "expo": "^33.0.0",
+    "expo": "^33.0.4",
     "expo-location": "^5.0.1",
     "expo-permissions": "^5.0.1",
     "react": "16.8.3",
