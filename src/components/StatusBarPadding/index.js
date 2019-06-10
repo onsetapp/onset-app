@@ -12,7 +12,7 @@ export default class StatusBarPadding extends Component {
 
   render () {
     return (
-      <View style={ styles.statusBarHeight }>
+      <View style={styles.statusBarHeight}>
         { this.props.children }
       </View>
     )
@@ -22,6 +22,6 @@ export default class StatusBarPadding extends Component {
 const styles = StyleSheet.create({
   statusBarPadding: {
     flex: 1,
-    paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight,
+    paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight
   }
 })

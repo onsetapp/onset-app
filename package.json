@@ -2,8 +2,8 @@
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "scripts": {
-    "lint": "eslint 'src/**/*.js' 'tests/**/*.js' '*.js'",
-    "lint:fix": "eslint --fix 'src/**/*.js'  'tests/**/*.js' '*.js'",
+    "lint": "eslint 'src/**/*.js' '__tests__/**/*.js' '*.js'",
+    "lint:fix": "eslint --fix 'src/**/*.js'  '__tests__/**/*.js' '*.js'",
     "test": "jest -o --watch --coverage=false",
     "test:ci": "jest",
     "update:snapshots": "jest -u --coverage=false",
@@ -14,7 +14,8 @@
     "eject": "expo eject",
     "debug": "open rndebugger://set-debugger-loc?host=127.0.0.1&port=19001",
     "cover:report": "open coverage/lcov-report/index.html",
-    "init:hard": "rm -rf node_modules/ package-lock.json && npm i"
+    "init:hard": "rm -rf node_modules/ package-lock.json && npm i",
+    "verify": "npm run lint && npm run test:ci"
   },
   "dependencies": {
     "apollo-boost": "^0.4.2",
@@ -46,7 +47,7 @@
   "jest": {
     "preset": "jest-expo",
     "transformIgnorePatterns": [
-      "node_modules/(?!((jest-)?react-native|react-clone-referenced-element|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|sentry-expo|native-base))"
+      "node_modules/(?!(@unimodules|(jest-)?react-native|react-clone-referenced-element|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|sentry-expo|native-base))"
     ],
     "collectCoverage": true,
     "collectCoverageFrom": [
@@ -56,7 +57,9 @@
       "!**/babel.config.js",
       "!**/jest.setup.js"
     ],
-    "setupFilesAfterEnv": ["./src/setupTests.js"],
+    "setupFilesAfterEnv": [
+      "./src/setupTests.js"
+    ],
     "coverageThreshold": {
       "global": {
         "statements": 10,

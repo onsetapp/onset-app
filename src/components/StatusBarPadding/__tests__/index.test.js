@@ -1,23 +1,22 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
-import { Text } from 'react-native'
 
-// import StatusBarPadding from '..'
+import StatusBarPadding from '..'
 
 describe('<StatusBarPadding />', () => {
-  // let component
-  // beforeEach(() => {
-  //   component = shallow(<StatusBarPadding />)
-  // })
-
-  it('renders the correct text', () => {
-    expect(true).toBeTruthy();
-    // expect(component).toBeTruthy();
+  let component
+  beforeEach(() => {
+    component = shallow(<StatusBarPadding />)
   })
 
-  // it('renders correctly', () => {
-  //   const tree = renderer.create(<StatusBarPadding />).toJSON();
-  //   expect(tree).toMatchSnapshot();
-  // })
+  it('renders the correct text', () => {
+    expect(true).toBeTruthy()
+    expect(component).toBeTruthy()
+  })
+
+  it('renders correctly', () => {
+    const tree = renderer.create(<StatusBarPadding />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
 })

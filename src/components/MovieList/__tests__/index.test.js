@@ -1,7 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import { shallow } from 'enzyme'
-import { Text } from 'react-native'
 
 import MovieList from '..'
 
@@ -12,11 +11,11 @@ describe('<MovieList />', () => {
   })
 
   it('renders the correct text', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeTruthy()
   })
 
   it('renders correctly', () => {
-    const tree = renderer.create(<MovieList />).toJSON();
-    expect(tree).toMatchSnapshot();
+    const tree = renderer.create(<MovieList />).toJSON()
+    expect(tree).toMatchSnapshot()
   })
 })
